@@ -24,7 +24,7 @@
             visibility: hidden;
             position: absolute;
             top: 40%;
-            left: 10%;
+            left: 30%;
             background-color: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 10px;
@@ -67,6 +67,7 @@
     </style>
 </head>
 <body>
+    <audio id="bubble"><source src="./bubble.mp3"> </audio>
     <audio id="hate"><source src="./sponge.mp3"> </audio>
     <span id="s"> <img id="sq" style="display:none;" src="./hate.u.gif"></span>
     <div id="happykrabs" >
@@ -159,6 +160,10 @@
     setTimeout(() => {
             sq.style.display = "none";
         }, 7000);
+    const bubble = document.getElementById("bubble");
+    setTimeout(() => {
+           bubble.play();
+        }, 3000);
 </script>
 
 </body>
