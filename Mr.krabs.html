@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mr. Krabs</title>
+    <style>
+        body {
+            background-image: url('./restaurant.in.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-wrap: wrap;
+            position: relative;
+            height: 100vh;
+            margin: 0;
+        }
+        div{
+            position: relative;
+            top: 40%;
+        }
+        #section2 {
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
+            top: 40%;
+            left: 10%;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            transition: opacity 0.5s ease;
+        }
+        #section2.show {
+            opacity: 1;
+          visibility: visible;
+        }
+       
+        #section1{
+            display: none;
+            position: absolute;
+            top: 60%;
+            left: 30%;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        #clickArea, #clickArea2 {
+            position: absolute;
+            cursor: pointer;
+        }
+        #done{
+            background-color: rgb(225, 214, 198);
+            height:70px;
+            border-radius: 5px;
+            color:rgb(67, 25, 25);
+            
+        }
+        #s{  
+            width: 200px;
+            height:250px;
+            display:flex;
+            position:fixed;
+            right: 100px;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <audio id="hate"><source src="./sponge.mp3"> </audio>
+    <span id="s"> <img id="sq" style="display:none;" src="./hate.u.gif"></span>
+    <div id="happykrabs" >
+        <img src="./mr.krabs.happy.gif">
+    </div>
+    <div id="angrykrabs" style="display:none" >
+        <img src="./mr.krabs.angryy.gif">
+    </div>
+
+    <div id="clickArea" style=" top: 20%; left: 70%; width: 25%; height: 15%;">
+    </div>
+    <audio id="angrySound"><source src="./mr_krabs_money.mp3"> </audio>
+
+    <div id="clickArea2" style=" top: 15%; right: 40%; width: 20%; height: 20%; "></div>
+
+
+    <section id="section1">
+        <audio id="angrySound" src="angry.mp3"></audio>
+        <input id="money" type="number" placeholder="Enter your money">
+        <button onclick="order()">Order</button>
+        <p id="text"></p>
+    </section> 
+    <div id="done"></div>
+
+    <section id="section2">
+        <div style="border-radius: 5px; background-color: antiquewhite;">
+            <ul>
+                <li>Fries 🍟 : 50</li>
+                <li>Burger 🍔 : 150</li>
+                <li>Combo 🍟+🍔 : 180</li>
+            </ul>
+        </div>
+</section>
+
+<script>
+    document.getElementById("clickArea").addEventListener("click", function () {
+        document.getElementById("section1").style.display = "block";
+    });
+
+    document.getElementById("clickArea2").addEventListener("click", function () {
+    const section2 = document.getElementById("section2");
+    section2.classList.toggle("show");
+    });
+
+
+    function order() {
+        const x = Number(document.getElementById('money').value);
+        const angrySound = document.getElementById("angrySound");
+        let y = 0;
+
+        if (x >= 180) {
+            document.getElementById("text").innerHTML = 'You ordered a Combo';
+            toggleImages("happykrabs", "angrykrabs");
+            y = x - 180;
+        } else if (x >= 150) {
+            document.getElementById("text").innerHTML = 'You ordered a burger';
+            toggleImages("happykrabs", "angrykrabs");
+            y = x - 150;
+        } else if (x >= 50) {
+            document.getElementById("text").innerHTML = 'You ordered fries';
+            toggleImages("happykrabs", "angrykrabs");
+            y = x - 50;
+        } else {
+            document.getElementById("text").innerHTML = 'You made Mr. Krabs sooo angry!';
+            angrySound.play();
+            toggleImages("angrykrabs", "happykrabs");
+            return;
+        }
+        //templte letter
+        document.getElementById("text").innerHTML += `<br>Your change: ${y}`;
+        document.getElementById("text").innerHTML += `<br>Preparing your order...`;
+        setTimeout(() => {
+        document.getElementById("done").innerHTML += `<br>Your order is ready! `;
+        setTimeout(() => {
+            done.innerHTML = "";
+        }, 5000);
+    }, 5000);
+    }
+
+    function toggleImages(showId, hideId) {
+        document.getElementById(showId).style.display = "block";
+        document.getElementById(hideId).style.display = "none";
+    }
+    const sq = document.getElementById("sq");
+    const hateSound = document.getElementById("hate");
+    setTimeout(() => {
+            hateSound.play();
+            sq.style.display = "block";
+        }, 5000);
+    setTimeout(() => {
+            sq.style.display = "none";
+        }, 7000);
+</script>
+
+</body>
+</html>

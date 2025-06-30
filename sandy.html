@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sandy</title>
+    <style>
+        body {
+            background-image: url('./sandy.homeee.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-wrap: wrap;
+            position: relative;
+            height: 100ph;
+            margin: 0;
+        }
+        ol{
+            background-color: antiquewhite;
+            height: 80px;
+            border-radius: 8px;
+            border: 2px solid black;
+        }
+        div.toDoList { 
+            top:20px;
+            right:10px;
+            position: absolute;
+            background-color: rgb(228, 241, 217);
+            text-align: center;
+            margin-top: 100px;
+            font-family: Arial, sans-serif;
+            border-radius: 8px;
+            border: 2px solid black;
+        }
+        #list {
+            width: 300px;
+            margin: 20px auto;
+            padding: 0;
+            list-style: none;
+        }
+        #list li {
+            margin: 5px;
+            padding: 10px;
+            border: 1px solid black;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .task-text {
+            flex-grow: 1;
+            cursor: pointer;
+        }
+        .done {
+            text-decoration: line-through;
+            color: gray;
+        }
+        .delete-btn {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 3px 8px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-left: 10px;
+        }
+        #celebration {
+            display: none;
+            color: green;
+            font-size: 24px;
+            margin-top: 20px;
+        }
+        div.class{ 
+            margin-top: 100px;
+            text-align: center;
+            position: absolute;
+            top:10px;
+            left:50px;
+            width:500px;
+            display:none;
+        }
+          div.class>h1,p{
+            background-color: antiquewhite;
+            display:flex;
+            justify-self: center;
+        }
+        </style>
+</head>
+<body>
+    <ol> Rules:
+        <li>
+            DO NOT touch this telescope !
+        </li>
+        <li>
+            DO NOT tell Spongbob about the telescope !
+        </li>
+        <li>
+            I'm dead serious read number one and two carefully . 
+        </li>
+    </ol>
+    <button onclick="showForm()" style="position:absolute; top: 120px; left: 50px;">Secret Access</button>
+
+    <div class="class">
+         <h1>Fill it out  :</h1>
+        <input id="name" type="text"  placeholder="who are you" minlength="1" required><br><br>
+        <input id="pass" type="text" placeholder="password"  required><br><br><p id="demo"></p><p id="demo2"></p><p id="demo3"></p>
+        <button onclick="myFunction()" >submit</button>
+
+    </div>
+    <div class="toDoList" >
+        <h1>To-Do List :)</h1>
+    <input type="text" id="taskInput" placeholder="Enter a task"><br><br>
+    <button onclick="addTask()">Add</button><br>
+    <ul id="list"></ul>
+    <p id="celebration">🎉 You completed all tasks ! Great job Sandy! 🎉</p>
+    <p id="taskCount">Total Tasks: 0</p>
+    </div> 
+
+
+    <script>
+        const list = document.getElementById("list");
+    const taskCount = document.getElementById("taskCount");
+    const celebration = document.getElementById("celebration");
+
+    function addTask() {
+        const taskText = document.getElementById("taskInput").value.trim();
+        if (!taskText) return alert("Please enter a task");
+
+        const li = document.createElement("li");
+
+        const span = document.createElement("span");
+        span.textContent = taskText;
+        span.className = "task-text";
+        span.addEventListener("click", () => {
+            span.classList.toggle("done");
+            checkAllDone();
+        });
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "delete";
+        deleteBtn.className = "delete-btn";
+        deleteBtn.onclick = () => {
+            li.remove();
+            updateTaskCount();
+            checkAllDone();
+        };
+
+        li.appendChild(span);
+        li.appendChild(deleteBtn);
+        list.appendChild(li);
+
+        document.getElementById("taskInput").value = "";
+        updateTaskCount();
+    }
+
+    function updateTaskCount() {
+        taskCount.textContent = `Total Tasks: ${list.children.length}`;
+    }
+
+    function checkAllDone() {
+        const tasks = list.querySelectorAll(".task-text");
+        const doneTasks = list.querySelectorAll(".task-text.done");
+
+        if (tasks.length > 0 && tasks.length === doneTasks.length) {
+            celebration.style.display = "block";
+            document.body.style.backgroundColor = "lightgreen";
+        } else {
+            celebration.style.display = "none";
+            document.body.style.backgroundColor = "";
+        }
+    }
+    async function myFunction() {
+        const nameInput = document.getElementById("name").value.trim();
+        const passInput = document.getElementById("pass").value.trim();
+
+        if (nameInput !== "sandy") {
+            document.getElementById("demo").innerHTML = "GET out of here before I kill you";
+        return;
+        }
+        else {
+            document.getElementById("demo").innerHTML = "Welcome Sandy!";
+        }
+
+        document.getElementById("demo3").innerHTML = "Processing password...";
+        const result = await checkPassword(passInput);
+
+        if (result) {
+            document.getElementById("demo3").innerHTML = "Great password choice :) ";
+        }
+        else {
+            document.getElementById("demo3").innerHTML = "GET out of here before I kill you";
+        }
+    }
+    // promise
+    function checkPassword(password) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                if (password === "password") {
+                    resolve(true);
+                }
+                else {
+                    resolve(false);
+                }
+            }, 2000); //2s delay
+        }); 
+    }
+    function showForm() {
+    document.querySelector("div.class").style.display = "block";
+    }
+
+    function showForm() {
+        const formDiv = document.querySelector("div.class");
+        formDiv.style.display = (formDiv.style.display === "block") ? "none" : "block";//yes?:none , no?:block
+    }
+    </script>
+</body>
+</html>

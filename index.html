@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to SpongeBob City</title>
+    <style>
+        video{
+            border-radius: 5px;
+            border: solid black;
+            display:flex;
+            justify-self: center;
+        }
+        body {
+            background-image: url('./image.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        p {
+            border-radius: 5px;
+        }
+        nav.sticky {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 10px;
+            justify-content: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-items: space-between;
+        }
+        nav a {
+            text-decoration: none;
+            margin: 12px;
+            color: white;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-right: 100px;;
+        }
+        .grid-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            justify-content: space-around;
+            }
+        div {
+            border-radius: 100px;
+            border: solid black;
+            transition: transform 0.5s;
+            margin: 30px;
+            display:flex;
+            justify-content: space-around;
+            }
+        div:hover {
+            transform: rotateY(360deg) scale(1.2);
+            display: flex;
+        }
+        nav{
+            display:flex;
+            align-items: baseline;
+        }
+        #s{  
+            width: 200px;
+            height:250px;
+            display:flex;
+            position:fixed;
+            right: 100px;
+            bottom: 0;
+        }
+        button{
+            display:flex;
+            position:fixed;
+            left:0;
+            bottom:0;
+        }
+    </style>
+</head>
+<body>
+    <audio id="exit"><source src="./sad.mp3" ></audio>
+<button onclick="exit()">leave SopngBob World</button>
+<audio id="bubble"><source src="./bubble.mp3"> </audio>
+<audio id="hate"><source src="./sponge.mp3"> </audio>
+<span id="s"> <img id="sq" style="display:none;" src="./hate.u.gif"></span>
+<h1></h1>
+
+<nav class="sticky" style="background-color: rgb(43, 43, 78); height: 30px;">
+    <a href="#intro">Intro</a>
+    <a href="#characters">Characters</a>
+    <a href="#closing">Closing</a>
+</nav>
+
+<br><br>
+
+<section id="intro">
+    <video width="560" height="315" controls>
+        <source src="C:\Users\GRAPHICS\Desktop\Spongbob\videoo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</section>
+
+<br><br>
+
+<section id="characters">
+    <nav class="grid-container">
+
+        <div>
+            <img id="mrkrabsImage" src="./mr.krabs.gif">
+            <p id="kmessage" style="background-color: aliceblue; color: rgb(31, 30, 30);"></p>
+        </div>
+
+        <div>
+            <img id="sImage" src="./squidward.gif">
+            <p id="smessage" style="background-color: aliceblue; color: rgb(31, 30, 30);"></p>
+        </div>
+
+        <div>
+            <img id="puffImage" src="./mrs.puff.gif">
+            <p id="pmessage" style="background-color: aliceblue; color: rgb(31, 30, 30);"></p>
+        </div>
+
+        <div>
+            <img id="gImage" style="width: 200px; height: 200px;" src="./gary.gif">
+            <p id="gmessage" style=" background-color: aliceblue; color: rgb(31, 30, 30);"></p>
+        </div>
+
+        <div>
+            <img id="sandyImage" src="./sandy.gif">
+            <p id="sandymessage" style="background-color: aliceblue; color: rgb(31, 30, 30);"></p>
+        </div>
+
+        <div>
+            <img id="plImage" src="./plankton.gif">
+            <p id="plmessage" style="background-color: aliceblue; color: rgb(31, 30, 30);"></p>
+        </div>
+
+        <div>
+            <img id="patrickImage" src="./patrickStar.gif">
+            <p id="message" style="background-color: aliceblue; color: rgb(31, 30, 30);"></p>
+        </div>
+
+    </nav>
+
+</section>
+
+
+<br><br>
+   <nav class="grid-container">
+    <a href="./Gary.html"> <img style="width:150px; height: 250px;" src="./spongbob-house.gif"></a>
+  <img src="./patrick-house.gif">
+    <a href="./Mr.krabs.html"><img src="./restaurant.gif"></a>
+    <a href="./sandy.html"><img src="./sandy.home.gif"></a>
+    <a href="./Jellyfish.html"><img src="./playy.gif" ></a>
+   </nav>
+    
+
+<br><br>
+
+<section id="closing">
+   <video width="560px" height="315px" controls>
+        <source src="C:\Users\GRAPHICS\Desktop\Spongbob\closing.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <br><br><br>
+</section>
+
+<script>
+    function exit() {
+        const exit = document.getElementById("exit");
+        exit.play();
+    }
+
+    class Character {
+        constructor(name, feature, relation) {
+            this.name = name;
+            this.feature = feature;
+            this.relation = relation;
+        }
+        describe() {
+            return this.name + ' is ' + this.feature + '. ' + this.name + " is SpongeBob's " + this.relation + '.';
+        }
+    }
+
+    const patrick = new Character("Patrick Star", "lazy and funny", "best friend forever");
+    const squidward = new Character("Squidward", "grumpy and moody", "best friend but he's not happy about it :(");
+    const mrkrabs = new Character("Mr. Krabs", "obsessed with money", "boss");
+    const plankton = new Character("Plankton", "trying so hard to steal the secret recipe", "enemy");
+    const sandy = new Character("Sandy", "smart and organized", "squirrel friend");
+    const puff = new Character("Mrs. Puff", "always nervous", "driving coach");
+    const Gary = new Character("Gary", "very slow", "snail pet");
+
+    // Patrick
+    const patrickImage = document.getElementById("patrickImage");
+    const message = document.getElementById("message");
+    patrickImage.addEventListener("mouseover", () => {
+        message.textContent = patrick.describe();
+        message.style.display = "block";
+    });
+    patrickImage.addEventListener("mouseout", () => {
+        message.style.display = "none";
+    });
+
+    // Mr. Krabs
+    const mrkrabsImage = document.getElementById("mrkrabsImage");
+    const kmessage = document.getElementById("kmessage");
+    mrkrabsImage.addEventListener("mouseover", () => {
+        kmessage.textContent = mrkrabs.describe();
+        kmessage.style.display = "block";
+    });
+    mrkrabsImage.addEventListener("mouseout", () => {
+        kmessage.style.display = "none";
+    });
+
+    // Squidward
+    const sImage = document.getElementById("sImage");
+    const smessage = document.getElementById("smessage");
+    sImage.addEventListener("mouseover", () => {
+        smessage.textContent = squidward.describe();
+        smessage.style.display = "block";
+    });
+    sImage.addEventListener("mouseout", () => {
+        smessage.style.display = "none";
+    });
+
+    // Mrs. Puff
+    const puffImage = document.getElementById("puffImage");
+    const pmessage = document.getElementById("pmessage");
+    puffImage.addEventListener("mouseover", () => {
+        pmessage.textContent =puff.describe();
+        pmessage.style.display = "block";
+    });
+    puffImage.addEventListener("mouseout", () => {
+        pmessage.style.display = "none";
+    });
+
+    // Gary
+    const gImage = document.getElementById("gImage");
+    const gmessage = document.getElementById("gmessage");
+    gImage.addEventListener("mouseover", () => {
+        gmessage.textContent = Gary.describe();
+        gmessage.style.display = "block";
+    });
+    gImage.addEventListener("mouseout", () => {
+        gmessage.style.display = "none";
+    });
+
+    // Sandy
+    const sandyImage = document.getElementById("sandyImage");
+    const sandymessage = document.getElementById("sandymessage");
+    sandyImage.addEventListener("mouseover", () => {
+        sandymessage.textContent = sandy.describe();
+        sandymessage.style.display = "block";
+    });
+    sandyImage.addEventListener("mouseout", () => {
+        sandymessage.style.display = "none";
+    });
+
+    // Plankton
+    const plImage = document.getElementById("plImage");
+    const plmessage = document.getElementById("plmessage");
+    plImage.addEventListener("mouseover", () => {
+        plmessage.textContent = plankton.describe();
+        plmessage.style.display = "block";
+    });
+    plImage.addEventListener("mouseout", () => {
+        plmessage.style.display = "none";
+    });
+    const sq = document.getElementById("sq");
+    const hateSound = document.getElementById("hate");
+    setTimeout(() => {
+            hateSound.play();
+            sq.style.display = "block";
+        }, 5000);
+    setTimeout(() => {
+            sq.style.display = "none";
+        }, 7000);
+    const bubble = document.getElementById("bubble");
+    setTimeout(() => {
+           bubble.play();
+        }, 3000);
+    
+        
+        
+</script>
+
+</body>
+</html>

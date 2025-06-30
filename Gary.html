@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gary</title>
+    <style>
+        body {
+            background-image: url('./Gary.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-wrap: wrap;
+            position: relative;
+            height: 100vh;  
+            margin: 0;
+        }
+        div.class {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            animation: moveLeft 10s alternate infinite;
+        }
+        img.fish {
+            width: 80px;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes moveLeft {
+            0% {right: 0;}
+            25%{}
+            50%{}
+            75%{}
+            100% {right: 600px;}
+        }
+
+        @keyframes rotate {
+            0% { transform: rotateY(0deg); }
+            25%{}
+            50% {  }
+            100% {transform: rotateY(180deg); }
+        }
+        #s{  
+            width: 200px;
+            height:250px;
+            display:flex;
+            position:fixed;
+            right: 100px;
+            bottom: 0;
+        }
+    </style>
+
+</head>
+<body>
+    <audio id="hate"><source src="./sponge.mp3"> </audio>
+    <span id="s"> <img id="sq" style="display:none;" src="./hate.u.gif"></span>
+    <div class="class">
+         <img class="fish" width="80px" src="./garyo.gif">
+    </div>
+    <script>
+        const sq = document.getElementById("sq");
+        const hateSound = document.getElementById("hate");
+        setTimeout(() => {
+            hateSound.play();
+            sq.style.display = "block";
+        }, 5000);
+        setTimeout(() => {
+            sq.style.display = "none";
+        }, 7000);
+    </script>
+</body>
+</html>
